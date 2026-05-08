@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Data — keep originals and processed CSVs tracked; ignore large binary models
+data/fasttext/
+*.bin
+*.vec
+
+# Model checkpoints
+checkpoints/
+
+# Results (optional — comment out if you want results tracked)
+# results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+.claude/
