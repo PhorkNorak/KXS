@@ -1,0 +1,55 @@
+# KhmerXScore Configuration
+# =========================
+
+data:
+  path: "data/dataset.csv"
+  score_type: "ratio"
+  split: [0.70, 0.15, 0.15]
+  max_seq_length: 256
+  seed: 42
+
+preprocessing:
+  kcc_normalize: true
+  remove_zero_width: true
+  spellcheck: false
+  segment_for_ml: true
+
+training:
+  lr: 2.0e-5
+  batch_size: 16
+  epochs: 30
+  patience: 5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  dropout: 0.2
+  seeds: [42, 123, 456]
+  freeze_layers_base: 6
+  freeze_layers_large: 18
+
+models:
+  tier1:
+    - {name: "BoW+Cosine", type: "bow_cosine"}
+    - {name: "TF-IDF+Cosine", type: "tfidf_cosine"}
+    - {name: "TF-IDF+SVR", type: "tfidf_svr"}
+  tier2:
+    - {name: "FastText+Cosine", type: "fasttext_cosine"}
+  tier3:
+    - {name: "BiLSTM+Attention", type: "bilstm_attn", hidden: 256, layers: 2}
+  tier4:
+    - {name: "S-MiniLM+Cosine", type: "sminilm", model: "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"}
+  tier5:
+    - {name: "mBERT-Simple", type: "transformer_simple", model: "bert-base-multilingual-uncased"}
+    - {name: "mBERT-Dual", type: "transformer_dual", model: "bert-base-multilingual-uncased"}
+    - {name: "XLM-R-Simple", type: "transformer_simple", model: "xlm-roberta-base"}
+    - {name: "PrahokBART-Simple", type: "transformer_simple", model: "nict-astrec-att/prahokbart_base", segmented: true}
+    - {name: "GTE-Simple", type: "transformer_simple", model: "Alibaba-NLP/gte-multilingual-base"}
+  tier6:
+    - {name: "GPT-4-ZeroShot", type: "llm", model: "gpt-4", mode: "zero"}
+    - {name: "GPT-4-FewShot", type: "llm", model: "gpt-4", mode: "few"}
+    - {name: "Claude-ZeroShot", type: "llm", model: "claude-sonnet-4-20250514", mode: "zero"}
+    - {name: "Gemini-ZeroShot", type: "llm", model: "gemini-1.5-pro", mode: "zero"}
+
+ablations:
+  scl: {temperature: 0.1, bank_size: 128, lambda: 0.9}
+  weighted_mse: {0: 5.0, 1: 1.5, 2: 0.8, 3: 1.2, 4: 0.5}
+  freeze_values: [0, 6, 9]

@@ -1,0 +1,74 @@
+{
+  "original_file": "data/dataset.csv",
+  "total_samples": 1184,
+  "dropped_nan": 1,
+  "seed": 42,
+  "split": {
+    "train": 828,
+    "val": 178,
+    "test": 178
+  },
+  "subjects": {
+    "Biology": 435,
+    "History": 433,
+    "Geography": 307,
+    "Earth Science": 9
+  },
+  "schools": {
+    "AS": 877,
+    "PT": 307
+  },
+  "unique_questions": 41,
+  "unique_students": 203,
+  "max_score_values": [
+    5,
+    6,
+    7,
+    8,
+    10,
+    12,
+    15,
+    20
+  ],
+  "score_ratio": {
+    "mean": 0.7144,
+    "std": 0.2796,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "score_discrete_distribution": {
+    "0": 14,
+    "1": 153,
+    "2": 327,
+    "3": 191,
+    "4": 499
+  },
+  "text_stats": {
+    "answer_chars_mean": 277.5,
+    "answer_words_mean": 10.0,
+    "reference_chars_mean": 309.6,
+    "reference_words_mean": 12.1
+  },
+  "per_subject_scores": {
+    "Biology": {
+      "n": 435,
+      "mean": 0.6297,
+      "std": 0.2206
+    },
+    "History": {
+      "n": 433,
+      "mean": 0.8928,
+      "std": 0.1867
+    },
+    "Earth Science": {
+      "n": 9,
+      "mean": 0.4583,
+      "std": 0.3248
+    },
+    "Geography": {
+      "n": 307,
+      "mean": 0.5902,
+      "std": 0.3295
+    }
+  }
+}
